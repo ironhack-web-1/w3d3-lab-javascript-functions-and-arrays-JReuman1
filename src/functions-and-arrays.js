@@ -16,13 +16,21 @@ const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard',
 
 function findLongestWord(words){
   let longestWord = " ";
-  for (let i = 0; i < words.length - 1; i++){
-      if (words[i].length > longestWord.length){
-          longestWord = words[i]
-      }
+  if (words.length === 0){
+      return null
   }
-  console.log(longestWord)
-  return(longestWord)
+  
+  else if (words.length === 1){
+      return words[0]
+  }
+
+  else{
+      for (let i = 0; i < words.length; i++){
+          if (words[i].length > longestWord.length){
+              longestWord = words[i]}}
+      console.log(longestWord)
+      return(longestWord)
+  }
 }
 
 // Iteration #3: Calculate the sum
@@ -36,28 +44,32 @@ function sumNumbers(numbers){
   console.log(sumTotal)
   return sumTotal    
 }
-
 // Iteration #3.1 Bonus:
 function sum(mixedArr) {
   let mixedSum = 0;
   for (let i = 0; i < mixedArr.length; i++){
-      if (typeof mixedArr[i] === "string"){
-          mixedSum += mixedArr[i].length;
+
+      if (typeof mixedArr[i] === "object"){
+          throw new Error("Unsupported data type sir or ma'am") 
       }
 
-      else if (typeof mixedArr[i] === "number"){
-          mixedSum += mixedArr[i];
+      else if (typeof mixedArr[i] === "array"){
+          throw new Error("Unsupported data type sir or ma'am") 
       }
 
-      else if (mixedArr[i] === true ) {
-          mixedSum += 1;
-      }
-
-      else if (mixedArr[i] === false) {
-          mixedSum += 0;
+      else{
+          if (typeof mixedArr[i] === "string"){
+              mixedSum += mixedArr[i].length;
+          }
+          
+          else if (typeof mixedArr[i] === "number"){
+              mixedSum += mixedArr[i];
+          }
+          else {
+              mixedSum += mixedArr[i];
+          }  
       }
   }
-
   console.log(mixedSum)
   return mixedSum
 }
@@ -67,9 +79,16 @@ function sum(mixedArr) {
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 function averageNumbers(numbers){
-  let average = sumNumbers(numbers)/numbers.length;
-  console.log(average)
-  return average
+
+  if (numbers.length === 0){
+    return null
+  }
+
+  else{
+    let average = sumNumbers(numbers)/numbers.length;
+    console.log(average)
+    return average
+  }
 }
 
 averageNumbers(numbers)
@@ -81,34 +100,47 @@ const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smar
 function averageWordLength(words){
   let letters = 0;
   let wordsavg = 0;
-  for (let i = 0; i <= words.length - 1; i++){
-      letters += words[i].length; 
+  
+  if (words.length === 0){
+    return null
   }
-  wordsavg = letters/words.length
-  console.log(wordsavg)
-  return wordsavg
+
+  else {
+    for (let i = 0; i <= words.length - 1; i++){
+      letters += words[i].length; 
+    }
+    wordsavg = letters/words.length
+    console.log(wordsavg)
+    return wordsavg
+  }
 }
 
 // Bonus - Iteration #4.1
 function avg(mixedArr) {
   let mixedSum = 0;
-  for (let i = 0; i < mixedArr.length; i++){
+
+  if (mixedArr.length === 0){
+    return null
+  }
+  
+  else{
+    for (let i = 0; i < mixedArr.length; i++){
       if (typeof mixedArr[i] === "string"){
-          mixedSum += mixedArr[i].length;
+        mixedSum += mixedArr[i].length;
       }
-
+      
       else if (typeof mixedArr[i] === "number"){
-          mixedSum += mixedArr[i];
+        mixedSum += mixedArr[i];
       }
-
       else if (mixedArr[i] === true ) {
-          mixedSum += 1;
+        mixedSum += 1;
       }
-
+      
       else if (mixedArr[i] === false) {
-          mixedSum += 0;
+        mixedSum += 0;
       }
   }
+}
 
   let totalAvg = mixedSum / mixedArr.length
   console.log(totalAvg)
